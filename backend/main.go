@@ -14,5 +14,5 @@ func main() {
 }
 
 func health(c *gin.Context) {
-	c.IndentedJSON(http.StatusOK, "Server is running")
+	c.JSON(http.StatusOK, "Server is running")
 }
