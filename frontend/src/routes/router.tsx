@@ -1,5 +1,6 @@
 import Login from "@/app/auth/Login";
 import Dashboard from "@/app/dashboard/Dashboard";
+import NotFound from "@/app/PageNotFound";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import Layout from "@/components/layout/Layout";
 import { createBrowserRouter } from "react-router-dom";
@@ -13,9 +14,13 @@ export const router = createBrowserRouter([
     element: <ProtectedRoute />,
     children: [
       {
-        element: <Layout children={undefined} />,
+        element: <Layout />,
         children: [{ path: "/", element: <Dashboard /> }],
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
