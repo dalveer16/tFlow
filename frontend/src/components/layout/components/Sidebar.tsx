@@ -11,58 +11,50 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarHeader,
-  SidebarTrigger,
 } from "@/components/ui/sidebar";
 
 import { Home, Folder, Users, Settings } from "lucide-react";
+import { Link, matchPath, useLocation } from "react-router-dom";
 
 export function AppSidebar({ className }: { className?: string }) {
+  const location = useLocation();
+
+  const links = [
+    { name: "Dashboard", to: "/dashboard", icon: Home },
+    { name: "Projects", to: "/projects", icon: Folder },
+    { name: "Users", to: "/users", icon: Users },
+    { name: "Settings", to: "/settings", icon: Settings },
+  ];
+
   return (
-    <Sidebar
-      collapsible="icon"
-      className={`h-full relative ${className ?? ""}`}
-    >
-      <SidebarHeader>
-        <SidebarTrigger />
-      </SidebarHeader>
+    <Sidebar className={`h-full relative ${className ?? ""}`}>
+      <SidebarHeader />
 
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Main</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <a href="/">
-                    <Home className="mr-2 h-4 w-4" />
-                    Dashboard
-                  </a>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <a href="/projects">
-                    <Folder className="mr-2 h-4 w-4" />
-                    Projects
-                  </a>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <a href="/users">
-                    <Users className="mr-2 h-4 w-4" />
-                    Users
-                  </a>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <a href="/settings">
-                    <Settings className="mr-2 h-4 w-4" />
-                    Settings
-                  </a>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
+              {links.map(({ name, to, icon: Icon }) => {
+                const isActive = !!matchPath(
+                  { path: to, end: false },
+                  location.pathname
+                );
+
+                return (
+                  <SidebarMenuItem key={to}>
+                    <SidebarMenuButton asChild isActive={isActive}>
+                      <Link
+                        to={to}
+                        className="flex items-center px-2 py-1 rounded-md"
+                      >
+                        <Icon className="mr-2 h-4 w-4" />
+                        {name}
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

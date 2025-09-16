@@ -6,7 +6,7 @@ export default function Login() {
   function handleLogin() {
     localStorage.setItem("token", "my-demo-token");
 
-    navigate("/", { replace: true });
+    navigate("/dashboard", { replace: true });
   }
 
   return (
