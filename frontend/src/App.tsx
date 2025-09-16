@@ -1,12 +1,14 @@
+import Layout from "./components/layout/Layout";
 import { ModeToggle } from "./components/mode-toggle";
 import { Button } from "./components/ui/button";
 
 function App() {
   return (
-    <div>
-      <ModeToggle />
-      <Button>click me</Button>
-    </div>
+    <>
+      <Layout>
+        <h2>hi</h2>
+      </Layout>
+    </>
   );
 }
 
