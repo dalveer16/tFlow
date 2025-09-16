@@ -1,13 +1,14 @@
 import Layout from "./components/layout/Layout";
-import { ModeToggle } from "./components/mode-toggle";
-import { Button } from "./components/ui/button";
+import { SidebarProvider } from "./components/ui/sidebar";
 
 function App() {
   return (
     <>
-      <Layout>
-        <h2>hi</h2>
-      </Layout>
+      <SidebarProvider>
+        <Layout>
+          <h2>hi</h2>
+        </Layout>
+      </SidebarProvider>
     </>
   );
 }
