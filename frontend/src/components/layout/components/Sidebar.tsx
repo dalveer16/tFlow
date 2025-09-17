@@ -27,7 +27,7 @@ export function AppSidebar({ className }: { className?: string }) {
   ];
 
   return (
-    <Sidebar className={`h-full relative ${className ?? ""}`}>
+    <Sidebar className={`h-full top-14 ${className ?? ""}`}>
       <SidebarHeader />
 
       <SidebarContent>
