@@ -10,7 +10,6 @@ import (
 func main() {
 	router := gin.Default()
 	database.Connect()
-
 	router.GET("/health", health)
 	router.Run("localhost:8080")
 }
